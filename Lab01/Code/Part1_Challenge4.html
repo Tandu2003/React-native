@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const bill1 = 275;
+      const bill2 = 40;
+      const bill3 = 430;
+
+      function tip(bill) {
+        return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+      }
+
+      const tip1 = tip(bill1);
+      const tip2 = tip(bill2);
+      const tip3 = tip(bill3);
+
+      const totalValue1 = bill1 + tip1;
+      const totalValue2 = bill2 + tip2;
+      const totalValue3 = bill3 + tip3;
+
+      document.body.innerText = `The bill was ${bill1}, the tip was ${tip1}, and the total value ${totalValue1}
+      The bill was ${bill2}, the tip was ${tip2}, and the total value ${totalValue2}
+      The bill was ${bill3}, the tip was ${tip3}, and the total value ${totalValue3}`;
+    </script>
+  </body>
+</html>
