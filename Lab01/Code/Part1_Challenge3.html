@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function winner(dolphinsAverageScores, koalasAverageScore) {
+        let result = "";
+        if (dolphinsAverageScore > koalasAverageScore && dolphinsAverageScore >= 100) {
+          result = "Dolphins win the competition!";
+        } else if (koalasAverageScore > dolphinsAverageScore && koalasAverageScore >= 100) {
+          result = "Koalas win the competition!";
+        } else if (
+          dolphinsAverageScore === koalasAverageScore &&
+          dolphinsAverageScore >= 100 &&
+          koalasAverageScore >= 100
+        ) {
+          result = "It's a draw!";
+        } else {
+          result = "No team wins the trophy.";
+        }
+        return result;
+      }
+
+      // Test data
+      const dolphinsScores = [96, 108, 89];
+      const koalasScores = [88, 91, 110];
+
+      const dolphinsBonus1Scores = [97, 112, 101];
+      const koalasBonus1Scores = [109, 95, 123];
+
+      const dolphinsBonus2Scores = [97, 112, 101];
+      const koalasBonus2Scores = [109, 95, 106];
+
+      const calculateAverageScore = (scores) => {
+        const sum = scores.reduce((total, score) => total + score, 0);
+        return sum / scores.length;
+      };
+
+      const dolphinsAverageScore = calculateAverageScore(dolphinsScores);
+      const koalasAverageScore = calculateAverageScore(koalasScores);
+
+      const dolphinsBonus1AverageScore = calculateAverageScore(dolphinsBonus1Scores);
+      const koalasBonus1AverageScore = calculateAverageScore(koalasBonus1Scores);
+
+      const dolphinsBonus2AverageScore = calculateAverageScore(dolphinsBonus2Scores);
+      const koalasBonus2AverageScore = calculateAverageScore(koalasBonus2Scores);
+
+      document.body.innerText +=
+        "Data 1: Dolphins score " +
+        dolphinsScores.join(", ") +
+        ". Koalas score " +
+        koalasScores.join(", ") +
+        ".\n";
+      document.body.innerText +=
+        "Data Bonus 1: Dolphins score " +
+        dolphinsBonus1Scores.join(", ") +
+        ". Koalas score " +
+        koalasBonus1Scores.join(", ") +
+        ".\n";
+      document.body.innerText +=
+        "Data Bonus 2: Dolphins score " +
+        dolphinsBonus2Scores.join(", ") +
+        ". Koalas score " +
+        koalasBonus2Scores.join(", ") +
+        ".\n";
+
+      document.body.innerText += "Data 1: " + winner(dolphinsAverageScore, koalasAverageScore);
+      document.body.innerText +=
+        "\n Data Bonus 1: " + winner(dolphinsBonus1AverageScore, koalasBonus1AverageScore);
+      document.body.innerText +=
+        "\n Data Bonus 2: " + winner(dolphinsBonus2AverageScore, koalasBonus2AverageScore);
+    </script>
+  </body>
+</html>
