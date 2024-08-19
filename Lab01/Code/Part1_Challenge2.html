@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Data 1
+      const markWeight1 = 78;
+      const markHeight1 = 1.69;
+      const johnWeight1 = 92;
+      const johnHeight1 = 1.95;
+
+      // Calculate BMIs
+      const markBMI1 = markWeight1 / markHeight1 ** 2;
+      const johnBMI1 = johnWeight1 / johnHeight1 ** 2;
+
+      // Data 2
+      const markWeight2 = 95;
+      const markHeight2 = 1.88;
+      const johnWeight2 = 85;
+      const johnHeight2 = 1.76;
+
+      // Calculate BMIs
+      const markBMI2 = markWeight2 / markHeight2 ** 2;
+      const johnBMI2 = johnWeight2 / johnHeight2 ** 2;
+
+      document.body.innerText = `Mark's BMI 1: ${markBMI1}
+      John's BMI 1: ${johnBMI1}
+      Mark's BMI 2: ${markBMI2}
+      John's BMI 2: ${johnBMI2}`;
+
+      document.body.innerText += "\n";
+
+      if (markBMI1 > johnBMI1) {
+        document.body.innerText += `Mark's BMI (${markBMI1}) is higher than John's (${johnBMI1})!`;
+      } else {
+        document.body.innerText += `John's BMI (${johnBMI1}) is higher than Mark's (${markBMI1})!`;
+      }
+      document.body.innerText += "\n";
+      if (markBMI2 > johnBMI2) {
+        document.body.innerText += `Mark's BMI (${markBMI2}) is higher than John's (${johnBMI2})!`;
+      } else {
+        document.body.innerText += `John's BMI (${johnBMI2}) is higher than Mark's (${markBMI2})!`;
+      }
+    </script>
+  </body>
+</html>
