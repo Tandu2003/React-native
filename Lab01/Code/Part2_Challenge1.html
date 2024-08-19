@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const calcAverage = (scores) => {
+        let sum = scores.reduce((acc, score) => acc + score, 0);
+        return sum / scores.length;
+      };
+
+      const dolphinsScore1 = [44, 23, 71];
+      const koalasScore1 = [65, 54, 49];
+
+      const dolphinsScore2 = [85, 54, 41];
+      const koalasScore2 = [23, 34, 27];
+
+      const dolphinsAverage = calcAverage(dolphinsScore1);
+      const koalasAverage = calcAverage(koalasScore1);
+
+      const dolphinsAverage2 = calcAverage(dolphinsScore2);
+      const koalasAverage2 = calcAverage(koalasScore2);
+
+      const checkWinner = (avgDolphins, avgKoalas) => {
+        const result =
+          avgDolphins >= 2 * avgKoalas
+            ? `Dolphins win (${avgDolphins} vs. ${avgKoalas})`
+            : avgKoalas >= 2 * avgDolphins
+            ? `Koalas win (${avgKoalas} vs. ${avgDolphins})`
+            : "No team wins!";
+        document.body.innerText += result;
+        document.body.innerHTML += "<br>";
+      };
+
+      document.body.innerText +=
+        "Data 1: Dolphins score " +
+        dolphinsScore1.join(", ") +
+        ". Koalas score " +
+        koalasScore1.join(", ") +
+        ".\n";
+
+      document.body.innerText +=
+        "Data 2: Dolphins score " +
+        dolphinsScore2.join(", ") +
+        ". Koalas score " +
+        koalasScore2.join(", ") +
+        ".\n";
+
+      document.body.innerHTML += "Data 1: ";
+      checkWinner(dolphinsAverage, koalasAverage);
+      document.body.innerHTML += "Data 2: ";
+      checkWinner(dolphinsAverage2, koalasAverage2);
+    </script>
+  </body>
+</html>
