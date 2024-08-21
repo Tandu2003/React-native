@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const mark = {
+        fullName: "Mark Miller",
+        mass: 78,
+        height: 1.69,
+      };
+
+      const john = {
+        fullName: "John Smith",
+        mass: 92,
+        height: 1.95,
+      };
+
+      mark.calcBMI = function () {
+        this.bmi = this.mass / this.height ** 2;
+        return this.bmi;
+      };
+
+      john.calcBMI = function () {
+        this.bmi = this.mass / this.height ** 2;
+        return this.bmi;
+      };
+
+      mark.calcBMI();
+      john.calcBMI();
+
+      document.body.innerText += `${mark.fullName}' weight is ${mark.mass} kg and is ${mark.height} m tall. ${john.fullName} weight is ${john.mass} kg and is ${john.height} m tall.\n`;
+
+      if (mark.bmi > john.bmi) {
+        document.body.innerText += `${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s BMI (${john.bmi})`;
+      } else if (john.bmi > mark.bmi) {
+        document.body.innerText += `${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s BMI (${mark.bmi})`;
+      } else {
+        document.body.innerText += `${mark.fullName} and ${john.fullName} have the same BMI (${mark.bmi})`;
+      }
+    </script>
+  </body>
+</html>
