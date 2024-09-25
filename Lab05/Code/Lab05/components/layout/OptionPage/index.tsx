@@ -62,6 +62,7 @@ const OptionPage = () => {
             <TouchableOpacity
               key={key}
               onPress={() => {
+                console.log(infoPhone);
                 setColor(infoPhone.color[key as keyof typeof infoPhone.color].uri);
                 setSelectedColor(key);
               }}

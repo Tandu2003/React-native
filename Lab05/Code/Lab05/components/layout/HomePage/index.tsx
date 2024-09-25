@@ -1,18 +1,13 @@
-import { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { useState } from "react";
 
 import infoPhone from "@/constants/InfoPhone";
 import { useColor } from "@/components/navigation/ColorConText";
 
 const HomePage = () => {
   const { color, setColor } = useColor();
-
-  useEffect(() => {
-    setColor(infoPhone.color.blue.uri);
-  });
-
   return (
     <View
       style={{

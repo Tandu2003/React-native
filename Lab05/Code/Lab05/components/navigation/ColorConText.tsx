@@ -1,10 +1,11 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, { createContext, useState, useContext, ReactNode, useEffect } from "react";
 
 import InfoPhone from "@/constants/InfoPhone";
+import { ImageSourcePropType } from "react-native";
 
 interface ColorContextType {
-  color: string;
-  setColor: React.Dispatch<React.SetStateAction<string>>;
+  color: ImageSourcePropType;
+  setColor: (color: ImageSourcePropType) => void;
 }
 
 const ColorContext = createContext<ColorContextType | undefined>(undefined);
@@ -14,7 +15,9 @@ interface ColorProviderProps {
 }
 
 export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
-  const [color, setColor] = useState(InfoPhone.color.blue.uri);
+  const [color, setColor] = useState<ImageSourcePropType>(InfoPhone.color.blue.uri);
+
+  console.log("abc", InfoPhone.color.blue.uri);
 
   return <ColorContext.Provider value={{ color, setColor }}>{children}</ColorContext.Provider>;
 };
