@@ -160,7 +160,7 @@ const HomePage = () => {
             borderColor: "#00000075",
             backgroundColor: "#C4C4C400",
           }}
-          onPress={() => router.push("./OptionPage")}
+          onPress={() => router.push("./optionPage")}
         >
           <Text></Text>
           <Text
