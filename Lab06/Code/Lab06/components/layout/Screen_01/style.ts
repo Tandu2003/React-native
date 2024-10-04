@@ -1,6 +1,16 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  loadingText: {
+    fontFamily: "Roboto",
+    fontSize: 20,
+    color: "#000",
+  },
   container: {
     marginTop: 40,
     flex: 1,
@@ -15,7 +25,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#fff",
-    fontSize: 20,
+    fontSize: 24,
   },
   infoContainer: {
     height: 80,

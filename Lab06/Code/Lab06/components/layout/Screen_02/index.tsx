@@ -9,6 +9,9 @@ import {
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, TextInput, Image, FlatList } from "react-native";
 
+import styles from "./style";
+import { router } from "expo-router";
+
 interface Product {
   id: number;
   image: string;
@@ -21,45 +24,25 @@ interface Product {
 
 export default function Screen_02() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://run.mocky.io/v3/5fc93b70-e7a7-457f-a30f-b6c95d7ebac9")
       .then((response) => response.json())
-      .then((json) => setProducts(json))
+      .then((json) => {
+        setProducts(json);
+        setLoading(false);
+      })
       .catch((error) => console.error(error));
   }, []);
 
   const renderItem = (item: Product) => {
     return (
-      <View
-        style={{
-          width: "50%",
-          alignItems: "center",
-          padding: 12,
-        }}
-      >
-        <Image source={{ uri: item.image }} width={155} height={90} />
-        <Text
-          style={{
-            width: 144,
-            paddingTop: 8,
-            fontFamily: "Roboto",
-            fontSize: 16,
-            fontWeight: "400",
-            lineHeight: 16.41,
-            textAlign: "left",
-          }}
-        >
-          {item.name}
-        </Text>
-        <View style={{}}>
-          <View
-            style={{
-              paddingVertical: 4,
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
+      <View style={styles.productContainer}>
+        <Image source={{ uri: item.image }} style={styles.productImage} />
+        <Text style={styles.productName}>{item.name}</Text>
+        <View>
+          <View style={styles.productRatingContainer}>
             {Array.from({ length: 5 }).map((_, index) => {
               return (
                 <Entypo
@@ -70,96 +53,40 @@ export default function Screen_02() {
                 />
               );
             })}
-            <Text
-              style={{
-                paddingLeft: 4,
-                fontFamily: "Roboto",
-                fontSize: 14,
-                fontWeight: "400",
-                alignContent: "center",
-              }}
-            >
-              ({item.comment})
-            </Text>
+            <Text style={styles.productComment}>({item.comment})</Text>
           </View>
-          <View
-            style={{
-              paddingVertical: 4,
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 14,
-                fontWeight: "700",
-                lineHeight: 14.06,
-                textAlign: "left",
-              }}
-            >
-              {item.price}
-            </Text>
-            <Text
-              style={{
-                paddingLeft: 12,
-                fontFamily: "Roboto",
-                fontSize: 14,
-                fontWeight: "400",
-                lineHeight: 14.06,
-                textAlign: "left",
-                color: "#969DAA",
-              }}
-            >
-              -{item.discount}
-            </Text>
+          <View style={styles.productPriceContainer}>
+            <Text style={styles.productPrice}>{item.price}</Text>
+            <Text style={styles.productDiscount}>-{item.discount}</Text>
           </View>
         </View>
       </View>
     );
   };
 
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
-    <View
-      style={{
-        width: "100%",
-        height: "100%",
-        paddingTop: 40,
-      }}
-    >
-      <View
-        style={{
-          paddingHorizontal: 20,
-          paddingVertical: 12,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "#1BA9FF",
-        }}
-      >
-        <AntDesign name="arrowleft" size={24} color="#fff" />
-        <View
-          style={{
-            paddingLeft: 8,
-            paddingVertical: 4,
-            paddingRight: 124,
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#fff",
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={() => {
+            router.back();
           }}
         >
+          <AntDesign name="arrowleft" size={24} color="#fff" />
+        </TouchableOpacity>
+        <View style={styles.searchContainer}>
           <Feather name="search" size={24} color="black" />
           <TextInput placeholder="Dây cáp usb" placeholderTextColor={"black"} />
         </View>
-        <View
-          style={{
-            width: 60,
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+        <View style={styles.headerIcons}>
           <FontAwesome name="shopping-cart" size={24} color="#fff" />
           <AntDesign name="ellipsis1" size={24} color="#fff" />
         </View>
@@ -170,32 +97,31 @@ export default function Screen_02() {
         renderItem={({ item }) => renderItem(item)}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        style={{
-          marginBottom: 40,
-        }}
+        style={styles.productList}
       />
 
-      <View
-        style={{
-          position: "absolute",
-          bottom: 0,
-          width: "100%",
-          paddingVertical: 10,
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-          backgroundColor: "#1BA9FF",
-        }}
-      >
+      <View style={styles.footer}>
         <TouchableOpacity
           onPress={() => {
-            alert(products.length);
+            router.back();
           }}
         >
           <Foundation name="list" size={24} color="black" />
         </TouchableOpacity>
-        <MaterialCommunityIcons name="home-outline" size={24} color="black" />
-        <AntDesign name="back" size={24} color="black" />
+        <TouchableOpacity
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <MaterialCommunityIcons name="home-outline" size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <AntDesign name="back" size={24} color="black" />
+        </TouchableOpacity>
       </View>
     </View>
   );

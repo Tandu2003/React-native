@@ -6,6 +6,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Foundation from "@expo/vector-icons/Foundation";
 
 import styles from "./style";
+import { router } from "expo-router";
 
 interface Product {
   id: number;
@@ -68,13 +69,14 @@ interface Product {
 
 export default function Screen_01() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://run.mocky.io/v3/b41ef2c7-7aee-4c16-b18f-88ad996d7c64")
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
-        console.log(data);
+        setLoading(false);
       });
   }, []);
 
@@ -99,12 +101,27 @@ export default function Screen_01() {
       </View>
     );
   };
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <FontAwesome name="arrow-left" size={30} color={"#fff"} />
+        <TouchableOpacity
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <AntDesign name="arrowleft" size={24} color="#fff" />
+        </TouchableOpacity>
         <Text style={styles.headerText}>Chat</Text>
-        <FontAwesome name="shopping-cart" size={30} color={"#fff"} />
+        <FontAwesome name="shopping-cart" size={24} color={"#fff"} />
       </View>
 
       <View style={styles.infoContainer}>
@@ -121,13 +138,25 @@ export default function Screen_01() {
       <View style={styles.footer}>
         <TouchableOpacity
           onPress={() => {
-            alert(products.length);
+            router.back();
           }}
         >
           <Foundation name="list" size={24} color="black" />
         </TouchableOpacity>
-        <MaterialCommunityIcons name="home-outline" size={24} color="black" />
-        <AntDesign name="back" size={24} color="black" />
+        <TouchableOpacity
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <MaterialCommunityIcons name="home-outline" size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <AntDesign name="back" size={24} color="black" />
+        </TouchableOpacity>
       </View>
     </View>
   );
