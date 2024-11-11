@@ -22,7 +22,7 @@ export default function Screen01({ navigation }) {
         <Image
           style={{ width: 292, height: 270 }}
           source={{
-            uri: "https://res.cloudinary.com/dzcc5diot/image/upload/v1731304087/download_mdgcnd.png",
+            uri: "https://res.cloudinary.com/dzcc5diot/image/upload/v1731308932/5c0d8c0f67fc78f523516fd7768fec28_pzffft.png",
           }}
         />
       </View>
